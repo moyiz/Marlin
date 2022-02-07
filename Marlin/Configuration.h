@@ -80,9 +80,7 @@
 
 // MAIN CONFIGURATION SWITCHES FOR FEATURES - see readme.md for more details.
 
-#define IS_BOARD_1_3            true  // True if you have the 1.3 board, false for 1.2 board
 #define HAS_BLTOUCH             true  // Enable if you have a BlTouch, false fo no BlTouch
-#define IS_2D                   false // True if you have a Neptuen 2d (Dual extruder)
 // Define missing pins
 #define POWER_LOSS_PIN          PA2
 #define MT_DET_PIN_STATE        LOW
@@ -150,11 +148,8 @@
 // For ZNP Robin Nano 1.2 - set default_envs = mks_robin_nano35
 // For ZNP Robin Nano 1.3 - default_envs = mks_robin_nano_v1_3_f4
 #ifndef MOTHERBOARD
-  #if (IS_BOARD_1_3)
-    #define MOTHERBOARD BOARD_MKS_ROBIN_NANO_V1_3_F4
-  #else
-    #define MOTHERBOARD BOARD_MKS_ROBIN_NANO
-  #endif
+  // #define BOARD_MKS_ROBIN_NANO  // For 1.2 board
+  #define MOTHERBOARD BOARD_MKS_ROBIN_NANO_V1_3_F4
 #endif
 
 /**
@@ -203,11 +198,7 @@
 #define FIRMWARE_BIN elegoo.bin
 
 // Name displayed in the LCD "Ready" message and Info menu
-#if IS_2D
-  #define CUSTOM_MACHINE_NAME "Elegoo Neptune 2D"
-#else
-  #define CUSTOM_MACHINE_NAME "Elegoo Neptune 2"
-#endif
+#define CUSTOM_MACHINE_NAME "Elegoo Neptune 2"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -256,12 +247,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#if IS_2D
-  #define EXTRUDERS 2
-  #define SINGLENOZZLE
-#else
-  #define EXTRUDERS 1
-#endif
+#define EXTRUDERS 1
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
@@ -1005,31 +991,21 @@
  * following movement settings. If fewer factors are given than the
  * total number of extruders, the last value applies to the rest.
  */
-#if IS_2D
-  #define DISTINCT_E_FACTORS
-#endif
+// #define DISTINCT_E_FACTORS
 
 /**
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#if IS_2D
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 133, 133 }
-#else
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 403.94 }
-#endif
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 403.94 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#if IS_2D
-  #define DEFAULT_MAX_FEEDRATE          { 150, 150, 3, 70, 70 }
-#else
-  #define DEFAULT_MAX_FEEDRATE          { 150, 150, 3, 70 }
-#endif
+#define DEFAULT_MAX_FEEDRATE          { 150, 150, 3, 70 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1568,11 +1544,7 @@
 #define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
-  #if IS_2D
-    #define NUM_RUNOUT_SENSORS   2          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
-  #else
-    #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
-  #endif
+  #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
 
   #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.
   #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
