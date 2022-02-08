@@ -605,29 +605,29 @@
 
 // Below this temperature the heater will be switched off
 // because it probably indicates a broken thermistor wire.
-#define HEATER_0_MINTEMP   5
-#define HEATER_1_MINTEMP   5
-#define HEATER_2_MINTEMP   5
-#define HEATER_3_MINTEMP   5
-#define HEATER_4_MINTEMP   5
-#define HEATER_5_MINTEMP   5
-#define HEATER_6_MINTEMP   5
-#define HEATER_7_MINTEMP   5
-#define BED_MINTEMP        5
-#define CHAMBER_MINTEMP    5
+#define HEATER_0_MINTEMP   10
+#define HEATER_1_MINTEMP   10
+#define HEATER_2_MINTEMP   10
+#define HEATER_3_MINTEMP   10
+#define HEATER_4_MINTEMP   10
+#define HEATER_5_MINTEMP   10
+#define HEATER_6_MINTEMP   10
+#define HEATER_7_MINTEMP   10
+#define BED_MINTEMP        10
+#define CHAMBER_MINTEMP    10
 
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 270
-#define HEATER_1_MAXTEMP 275
-#define HEATER_2_MAXTEMP 275
-#define HEATER_3_MAXTEMP 275
-#define HEATER_4_MAXTEMP 275
-#define HEATER_5_MAXTEMP 275
-#define HEATER_6_MAXTEMP 275
-#define HEATER_7_MAXTEMP 275
-#define BED_MAXTEMP      110
+#define HEATER_0_MAXTEMP 285
+#define HEATER_1_MAXTEMP 285
+#define HEATER_2_MAXTEMP 285
+#define HEATER_3_MAXTEMP 285
+#define HEATER_4_MAXTEMP 285
+#define HEATER_5_MAXTEMP 285
+#define HEATER_6_MAXTEMP 285
+#define HEATER_7_MAXTEMP 285
+#define BED_MAXTEMP      120
 #define CHAMBER_MAXTEMP  60
 
 /**
@@ -665,9 +665,9 @@
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
     // Tuned by the author. Tune your machine with M303.
-    #define DEFAULT_Kp  25.47
-    #define DEFAULT_Ki   2.11
-    #define DEFAULT_Kd  76.90
+    #define DEFAULT_Kp 26.05
+    #define DEFAULT_Ki 2.71
+    #define DEFAULT_Kd 62.53
   #endif
 #endif // PIDTEMP
 
@@ -708,9 +708,9 @@
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
 
   // Tuned by the author. Tune your machine with M303.
-  #define DEFAULT_bedKp 31.30
-  #define DEFAULT_bedKi 6.02
-  #define DEFAULT_bedKd 108.50
+  #define DEFAULT_bedKp 70.78
+  #define DEFAULT_bedKi 13.21
+  #define DEFAULT_bedKd 252.92
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
